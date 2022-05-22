@@ -1,8 +1,9 @@
 import React from "react";
+import logo from '../../images/logo.webp'
 
 const Header = () => {
   return (
-    <div class="navbar bg-base-100 text-black px-12">
+    <div class="navbar bg-base-100 text-black lg:px-12">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -37,7 +38,9 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <div className="">
+          <img src={logo} alt="" />
+        </div>
       </div>
       <div class="navbar-end hidden lg:flex px-">
         <ul class="menu menu-horizontal p-0">
