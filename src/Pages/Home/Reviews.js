@@ -31,7 +31,7 @@ const Reviews = () => {
             <div className='grid grid-cols-3 gap-10 px-10'>
             
                 {
-                    reviews.map(review => <div className="card bg-base-100 shadow-xl my-12">
+                    reviews.map((review, index) => <div key={index} className="card bg-base-100 shadow-xl my-12">
                     <div className="card-body">
                       <p>{review.description}</p>
               

@@ -1,7 +1,22 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 import logo from '../../images/logo.webp'
+import Loading from "./Loading";
 
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
+
+  
+  const handleSignOut = () => {
+    signOut(auth);
+  }
+
+  if(loading){
+    return <Loading></Loading>
+  }
   return (
     <div class="navbar bg-base-100 text-black lg:px-20 py-6">
       <div class="navbar-start">
@@ -39,7 +54,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="">
-          <img className="w-28" src={logo} alt="" />
+          <Link to={'/'}><img className="w-28" src={logo} alt="" /></Link>
         </div>
       </div>
       <div class="navbar-end hidden lg:flex px-">
@@ -53,6 +68,16 @@ const Header = () => {
           <li>
             <a>Item 3</a>
           </li>
+          {user ? <>
+          <li tabindex="0">
+            <a href="">{user.displayName}</a>
+          </li>
+          <button onClick={handleSignOut} className="btn btn-outline btn-warning rounded-md">Sign Out</button>
+          </>
+          : 
+          <li className="btn btn-outline btn-warning rounded-md">
+          <Link to={'/login'}>Login</Link>
+        </li>}
         </ul>
       </div>
     </div>
