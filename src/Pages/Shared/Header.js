@@ -3,7 +3,7 @@ import logo from '../../images/logo.webp'
 
 const Header = () => {
   return (
-    <div class="navbar bg-base-100 text-black lg:px-12">
+    <div class="navbar bg-base-100 text-black lg:px-20 py-6">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -39,7 +39,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="">
-          <img src={logo} alt="" />
+          <img className="w-28" src={logo} alt="" />
         </div>
       </div>
       <div class="navbar-end hidden lg:flex px-">
