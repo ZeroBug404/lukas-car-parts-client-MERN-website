@@ -14,9 +14,6 @@ const Header = () => {
     signOut(auth);
   }
 
-  if(loading){
-    return <Loading></Loading>
-  }
   return (
     <div class="navbar bg-base-100 text-black lg:px-20 py-6">
       <div class="navbar-start">

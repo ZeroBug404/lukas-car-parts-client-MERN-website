@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { name, image } = product;
+  const { _id, name, image, description, minimunOrderQuantity, availableQuantity, price } = product;
+
+  const navigate = useNavigate()
+
+  const handleOrder = () => {
+    navigate(`/order/${_id}`)
+  }
   return (
     <div class="card card-compact bg-base-100 shadow-xl text-slate-900">
       <figure>
@@ -12,9 +19,14 @@ const Product = ({ product }) => {
       </figure>
       <div class="card-body">
         <h2 class="card-title">{name}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <p>{description}</p>
+        <div>
+          <p>Minimum Order Quantity: <span className="font-bold">{minimunOrderQuantity}</span></p>
+          <p>Available products: <span className="font-bold">{availableQuantity}</span></p>
+          <p>Price per unit: <span className="font-bold">{price}</span></p>
+        </div>
         <div class="card-actions">
-          <button class="btn btn-primary block w-full">Order Now</button>
+          <button onClick={handleOrder} class="btn btn-primary block w-full">Order Now</button>
         </div>
       </div>
     </div>
