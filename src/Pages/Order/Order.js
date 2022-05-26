@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const Order = () => {
-  // const [user, loading, error] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
   const [products, setProducts] = useState({});
-  const [quantityError, setQuantityError] = useState(false)
+  const [quantityError, setQuantityError] = useState(false);
   // const quantityRef = useRef(0);
   const { id } = useParams();
 
@@ -23,17 +24,47 @@ const Order = () => {
     handleSubmit,
   } = useForm();
 
+  // const onChange = (data) => {
 
-  const onChange = (data) => {
+  // };
+
+  const onSubmit = (data) => {
     const quantity = parseInt(data.quantity);
-    // console.log(quantity);`
+    console.log(data);
 
-    if(quantity < products.minimunOrderQuantity || quantity > products.availableQuantity){
-      setQuantityError(true);
-    }
-    else{
+    const oreder = {
+      productId: products._id,
+      productName: products.name,
+      productQuantity: data.quantity,
+      addresss: data.address,
+      phone: data.phone,
+      price: products.price,
+      image: products.image
+    };
+
+    if (
+      quantity < products.minimunOrderQuantity ||
+      quantity > products.availableQuantity
+    ) {
+      return setQuantityError(true);
+    } else {
+      // console.log(oreder);
+      fetch("http://localhost:5000/bookings", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(oreder),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          toast.success("Your Order is placed");
+        });
+
       setQuantityError(false);
     }
+
   };
 
   return (
@@ -83,30 +114,33 @@ const Order = () => {
               Fill up to order
             </h2>
             <div class="card-body">
-              <form onChange={handleSubmit(onChange)}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                   type="name"
-                  placeholder="Fullname"
+                  placeholder={user.displayName}
+                  value={user.displayName}
+                  readOnly
                   className="input input-bordered w-full max-w-xs my-3"
                   {...register("name", {
                     required: true,
                   })}
                 />
-                {errors.name?.type === "required" && (
+                {/* {errors.name?.type === "required" && (
                   <span className="text-red-500">Name is required</span>
-                )}
+                )} */}
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder={user.email}
+                  value={user.email}
                   className="input input-bordered w-full max-w-xs my-3"
                   {...register("email", {
                     required: true,
                     pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
                   })}
                 />
-                {errors.email?.type === "required" && (
+                {/* {errors.email?.type === "required" && (
                   <span className="text-red-500">Email is required</span>
-                )}
+                )} */}
                 <input
                   type="phone"
                   placeholder="Phone number"
@@ -120,15 +154,34 @@ const Order = () => {
                 )}
                 <input
                   type="text"
+                  placeholder="Address"
+                  className="input input-bordered w-full max-w-xs my-3"
+                  {...register("address", {
+                    required: true,
+                  })}
+                />
+                {errors.address?.type === "required" && (
+                  <span className="text-red-500">Address is required</span>
+                )}
+                <input
+                  type="text"
                   placeholder="Order Quantity"
                   className="input input-bordered w-full max-w-xs my-3"
                   {...register("quantity", {
                     required: true,
+                    maxLength: 7550,
                   })}
+                  // onChange={onChange}
                   // ref={quantityRef}
                 />
                 {errors.quantity?.type === "required" && (
-                  <span className="text-red-500">You must order minimum {products.minimunOrderQuantity} and maximum {products.availableQuantity}</span>
+                  <span className="text-red-500">
+                    You must order minimum {products.minimunOrderQuantity} and
+                    maximum {products.availableQuantity}
+                  </span>
+                )}
+                {errors.quantity?.type === "maxLength" && (
+                  <span role="alert">Max length exceeded</span>
                 )}
 
                 <input

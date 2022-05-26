@@ -46,7 +46,7 @@ const Header = () => {
               
             </li>
             <li>
-              <a>Item 3</a>
+              <Link to={'/dashboard'}></Link>
             </li>
           </ul>
         </div>
@@ -55,17 +55,18 @@ const Header = () => {
         </div>
       </div>
       <div class="navbar-end hidden lg:flex px-">
-        <ul class="menu menu-horizontal p-0">
+        <ul class="menu menu-horizontal p-0 font-semibold">
           <li>
             <a>Item 1</a>
           </li>
           <li tabindex="0">
             <a>Parent</a>
           </li>
-          <li>
-            <a>Item 3</a>
-          </li>
+          
           {user ? <>
+          <li>
+            <Link to={'/dashboard'}>Dashboard</Link>
+          </li>
           <li tabindex="0">
             <a href="">{user.displayName}</a>
           </li>
