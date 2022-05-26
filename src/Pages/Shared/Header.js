@@ -9,7 +9,7 @@ import Loading from "./Loading";
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  console.log(user);
+  // console.log(user);
   const handleSignOut = () => {
     signOut(auth);
     localStorage.removeItem('accessToken');
