@@ -1,14 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import useToken from "../Hooks/useToken";
+import Loading from "../Shared/Loading";
+
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-    const navigate = useNavigate();
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const [token] = useToken(user || gUser)
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -16,19 +26,40 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-      console.log(data)
-      const name = data.name;
-      const email = data.email;
-      const password = data.password;
-
-      createUserWithEmailAndPassword(email, password)
-    };
+  const onSubmit = async (data) => {
+    console.log(data);
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
 
 
-    if(user) {
-        navigate('/')
-    }
+    await createUserWithEmailAndPassword(email, password);
+
+    await updateProfile({ displayName: name })
+
+  };
+
+  if (user || gUser) {
+    navigate("/");
+    // console.log(user, gUser);
+  }
+
+  if(token) {
+    navigate('/dashboard')
+  }
+
+  let signInError;
+  if (error || gError || updateError) {
+    signInError = (
+      <small className="text-red-500">
+        {error?.message} || {gError?.message} || {updateError?.message}
+      </small>
+    );
+  }
+
+  if(loading || gLoading || updating){
+    return <Loading></Loading>
+  }
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl text-slate-700">
@@ -69,7 +100,7 @@ const Register = () => {
             {errors.password?.type === "required" && (
               <span className="text-red-500">Password is required</span>
             )}
-            {/* {signInError} */}
+            {signInError}
             <input
               className="btn btn-warning w-full max-w-xs my-3"
               type="submit"
@@ -88,7 +119,7 @@ const Register = () => {
 
           <div className="divider">OR</div>
           <button
-            // onClick={() => signInWithGoogle()}
+            onClick={() => signInWithGoogle()}
             className="btn btn-outline btn-warning"
           >
             Continue with Google

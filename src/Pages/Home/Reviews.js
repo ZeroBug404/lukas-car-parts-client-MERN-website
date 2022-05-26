@@ -28,7 +28,7 @@ const Reviews = () => {
     return (
         <div className='bg-slate-100 mx-12 text-slate-900'>
             <h2 className='text-4xl font-bold text-center p-8'>From Our Clients</h2>
-            <div className='grid grid-cols-3 gap-10 px-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 sm:gap-5 px-10'>
             
                 {
                     reviews.map((review, index) => <div key={index} className="card bg-base-100 shadow-xl my-12">

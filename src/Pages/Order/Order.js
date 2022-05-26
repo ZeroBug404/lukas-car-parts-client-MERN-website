@@ -33,13 +33,14 @@ const Order = () => {
     console.log(data);
 
     const oreder = {
-      productId: products._id,
+      // productId: products._id,
       productName: products.name,
       productQuantity: data.quantity,
       addresss: data.address,
       phone: data.phone,
       price: products.price,
-      image: products.image
+      image: products.image,
+      userEmail: user.email
     };
 
     if (
@@ -49,7 +50,7 @@ const Order = () => {
       return setQuantityError(true);
     } else {
       // console.log(oreder);
-      fetch("http://localhost:5000/bookings", {
+      fetch("http://localhost:5000/orders", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

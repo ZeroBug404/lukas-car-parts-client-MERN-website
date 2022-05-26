@@ -4,6 +4,7 @@ import {  useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireb
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../Hooks/useToken';
 import Loading from '../Shared/Loading';
 
 const Login = () => {
@@ -14,7 +15,9 @@ const Login = () => {
         error,
       ] = useSignInWithEmailAndPassword(auth);
 
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+      const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+      const [token] = useToken(user || gUser)
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -36,9 +39,18 @@ const Login = () => {
       signInWithEmailAndPassword(email, password)
     };
 
-    if(user || gUser) {
+    if(token) {
         navigate(from, { replace: true });
     }
+
+    let signInError;
+    if (error || gError) {
+    signInError = (
+      <small className="text-red-500">
+        {error?.message} || {gError?.message}
+      </small>
+    );
+  }
 
     if(loading || gLoading){
         <Loading></Loading>
@@ -72,7 +84,7 @@ const Login = () => {
             {errors.password?.type === "required" && (
               <span className="text-red-500">Password is required</span>
             )}
-            {/* {signInError} */}
+            {signInError}
             <input
               className="btn btn-warning w-full max-w-xs my-3"
               type="submit"

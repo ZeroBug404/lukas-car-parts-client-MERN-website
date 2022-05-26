@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -9,9 +9,10 @@ import Loading from "./Loading";
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  
+  console.log(user);
   const handleSignOut = () => {
     signOut(auth);
+    localStorage.removeItem('accessToken');
   }
 
   return (
@@ -39,7 +40,7 @@ const Header = () => {
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link to={'/Home'}>Home</Link>
             </li>
             <li tabindex="0">
             <a>Parent</a>
@@ -57,7 +58,7 @@ const Header = () => {
       <div class="navbar-end hidden lg:flex px-">
         <ul class="menu menu-horizontal p-0 font-semibold">
           <li>
-            <a>Item 1</a>
+          <Link to={'/Home'}>Home</Link>
           </li>
           <li tabindex="0">
             <a>Parent</a>
@@ -65,10 +66,10 @@ const Header = () => {
           
           {user ? <>
           <li>
-            <Link to={'/dashboard'}>Dashboard</Link>
+            <Link to={'/dashboard/myprofile'}>Dashboard</Link>
           </li>
           <li tabindex="0">
-            <a href="">{user.displayName}</a>
+            <p>{user?.displayName}</p>
           </li>
           <button onClick={handleSignOut} className="btn btn-outline btn-warning rounded-md">Sign Out</button>
           </>
