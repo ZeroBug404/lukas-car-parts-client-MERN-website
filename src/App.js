@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import AddProducts from "./Pages/Dashboard/AddProducts";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -10,6 +11,7 @@ import MyProfile from "./Pages/Dashboard/MyProfile";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import Order from "./Pages/Order/Order";
 import Footer from "./Pages/Shared/Footer";
@@ -33,7 +35,8 @@ function App() {
           <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
           <Route path="myorders" element={<MyOrders></MyOrders>}></Route>
           <Route path="addreview" element={<AddReview></AddReview>}></Route>
-          <Route path="allusers" element={<AllUsers></AllUsers>}></Route>
+          <Route path="allusers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
+          <Route path="addproducts" element={<RequireAdmin><AddProducts ></AddProducts ></RequireAdmin>}></Route>
         </Route>
         <Route path="register" element={<Register></Register>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
