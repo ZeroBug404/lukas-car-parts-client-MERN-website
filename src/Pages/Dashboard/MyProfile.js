@@ -9,7 +9,7 @@ const MyProfile = () => {
   const [userInfo, setUserInfo] = useState({})
 
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const {
     register,

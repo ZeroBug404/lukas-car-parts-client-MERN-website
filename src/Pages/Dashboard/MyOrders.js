@@ -15,9 +15,9 @@ const MyOrders = () => {
   const navigate = useNavigate()
 
   const {
+    data: orders,
     isLoading,
     error,
-    data: orders,
     refetch,
   } = useQuery("myorders", () =>
     fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
