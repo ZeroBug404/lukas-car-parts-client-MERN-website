@@ -6,6 +6,8 @@ import AddProducts from "./Pages/Dashboard/AddProducts";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import ManageOrders from "./Pages/Dashboard/ManageOrders";
+import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import Home from "./Pages/Home/Home";
@@ -37,6 +39,8 @@ function App() {
           <Route path="addreview" element={<AddReview></AddReview>}></Route>
           <Route path="allusers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
           <Route path="addproducts" element={<RequireAdmin><AddProducts ></AddProducts ></RequireAdmin>}></Route>
+          <Route path="manageproducts" element={<RequireAdmin><ManageProducts ></ManageProducts ></RequireAdmin>}></Route>
+          <Route path="manageorders" element={<RequireAdmin><ManageOrders ></ManageOrders ></RequireAdmin>}></Route>
         </Route>
         <Route path="register" element={<Register></Register>}></Route>
         <Route path="login" element={<Login></Login>}></Route>

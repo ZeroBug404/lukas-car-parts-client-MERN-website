@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import DeleteOrderConfirm from "./DeleteOrderConfirm";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
+  const [deleteConfirm, setDeleteConfirm] = useState(null)
 
   const navigate = useNavigate()
 
@@ -55,13 +56,7 @@ const MyOrders = () => {
               <th>Action</th>
             </tr>
           </thead>
-          {
-              orders?.map(order => <DeleteOrderConfirm
-                key={order._id} 
-                order={order}
-                refetch={refetch}
-                ></DeleteOrderConfirm>)
-          }
+          
           <tbody>
             {orders?.map((order, index) => (
               <tr key={order._id} className="text-slate-800">
@@ -70,7 +65,7 @@ const MyOrders = () => {
                 <td>{order.productName}</td>
                 <td>{order.productQuantity}</td>
                 <td>
-                  <label for="delete-modal" class="btn btn-error mr-2 btn-sm">
+                  <label onClick={() => setDeleteConfirm(order)} for="delete-modal" class="btn btn-error mr-2 btn-sm">
                     delete
                   </label>
                   <button class="btn btn-success btn-sm">pay</button>
@@ -79,6 +74,14 @@ const MyOrders = () => {
             ))}
           </tbody>
         </table>
+        {
+              (deleteConfirm &&  <DeleteOrderConfirm
+              deleteConfirm={deleteConfirm}
+              setDeleteConfirm={setDeleteConfirm}
+                refetch={refetch}
+                ></DeleteOrderConfirm>)
+          }
+
       </div>
     </div>
   );

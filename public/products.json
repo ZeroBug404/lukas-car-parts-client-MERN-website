@@ -1,7 +1,7 @@
 [
     {
       "price": "$2,168.93",
-      "image": "https://i.ibb.co/xFS5bBG/product-2.webp",
+      "imageUrl": "https://i.ibb.co/xFS5bBG/product-2.webp",
       "minimunOrderQuantity": 452,
       "availableQuantity": 2690,
       "name": "Auto Clutch & Break",
@@ -11,7 +11,7 @@
     },
     {
       "price": "$1,043.08",
-      "image": "https://i.ibb.co/MZryJxQ/product-4.webp",
+      "imageUrl": "https://i.ibb.co/MZryJxQ/product-4.webp",
       "minimunOrderQuantity": 243,
       "availableQuantity": 7664,
       "name": "Richardson Holmes",
@@ -21,7 +21,7 @@
     },
     {
       "price": "$1,753.00",
-      "image": "https://i.ibb.co/5KjRVVy/product-5.webp",
+      "imageUrl": "https://i.ibb.co/5KjRVVy/product-5.webp",
       "minimunOrderQuantity": 502,
       "availableQuantity": 5587,
       "name": "Dorothy Hicks",
@@ -31,7 +31,7 @@
     },
     {
       "price": "$1,445.60",
-      "image": "https://i.ibb.co/yQwPxdD/product-7.webp",
+      "imageUrl": "https://i.ibb.co/yQwPxdD/product-7.webp",
       "minimunOrderQuantity": 987,
       "availableQuantity": 16864,
       "name": "Soto Ware",
@@ -39,6 +39,7 @@
       "company": "GENMEX",
       "email": "sotoware@genmex.com"
     },
+
     {
       "price": "$1,269.18",
       "image": "https://i.ibb.co/0nRnSfG/product-8.webp",
