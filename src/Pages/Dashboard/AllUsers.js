@@ -10,7 +10,7 @@ const AllUsers = () => {
 
   // console.log(user);
   useEffect(() => {
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://protected-plains-56245.herokuapp.com/users`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -23,7 +23,7 @@ const AllUsers = () => {
   }, [users]);
 
   const makeAdmin = (email) => {
-    fetch(`http://localhost:5000/users/admin/${email}`, {
+    fetch(`https://protected-plains-56245.herokuapp.com/users/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -47,8 +47,8 @@ const AllUsers = () => {
     <div>
       <h2 className="text-3xl text-slate-600 font-semibold">All User</h2>
 
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           {/* <!-- head --> */}
           <thead>
             <tr>
@@ -71,11 +71,11 @@ const AllUsers = () => {
                     <>
                       <label
                         onClick={() => makeAdmin(user.email)}
-                        class="btn btn-success mr-2 btn-sm"
+                        className="btn btn-success mr-2 btn-sm"
                       >
                         make admin
                       </label>
-                      <button class="btn btn-error btn-sm">delete</button>
+                      <button className="btn btn-error btn-sm">delete</button>
                     </>
                   )}
                 </td>

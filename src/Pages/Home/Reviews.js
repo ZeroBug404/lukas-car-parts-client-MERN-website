@@ -4,7 +4,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review`)
+    fetch(`https://protected-plains-56245.herokuapp.com/review`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -19,21 +19,19 @@ const Reviews = () => {
               <p>{review.reviewText}</p>
 
               <div className="flex justify-between">
-              <div className="flex justify-start items-center my-5">
-                <div className="avatar mr-4">
-                  <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={review.img} alt="" />
+                <div className="flex justify-start items-center my-5">
+                  <div className="avatar mr-4">
+                    <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                      <img src={review.img} alt="" />
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="card-title">{review.name}</h2>
+                    <p>{review.location}</p>
                   </div>
                 </div>
-                <div>
-                  <h2 className="card-title">{review.name}</h2>
-                  <p>{review.location}</p>
-                </div>
-              </div>
 
-              <div>
-                {review.star}
-              </div>
+                <div>{review.star}</div>
               </div>
             </div>
           </div>

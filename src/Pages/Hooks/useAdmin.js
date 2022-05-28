@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 const useAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
-  const [adminLoading, setAdminLoading] = useState(true)
+  const [adminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      fetch(`http://localhost:5000/admin/${email}`, {
+      fetch(`https://protected-plains-56245.herokuapp.com/admin/${email}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -17,7 +17,7 @@ const useAdmin = (user) => {
           //   console.log("Success:", data);
 
           setAdmin(data.admin);
-          setAdminLoading(false)
+          setAdminLoading(false);
         });
     }
   }, [user]);

@@ -13,7 +13,7 @@ const Order = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://protected-plains-56245.herokuapp.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [id]);
@@ -40,7 +40,7 @@ const Order = () => {
       phone: data.phone,
       price: products.price,
       image: products.image,
-      userEmail: user.email
+      userEmail: user.email,
     };
 
     if (
@@ -50,7 +50,7 @@ const Order = () => {
       return setQuantityError(true);
     } else {
       // console.log(oreder);
-      fetch("http://localhost:5000/orders", {
+      fetch("https://protected-plains-56245.herokuapp.com/orders", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,6 @@ const Order = () => {
 
       setQuantityError(false);
     }
-
   };
 
   return (
@@ -74,14 +73,14 @@ const Order = () => {
         Continue with the order
       </h2>
 
-      <div class="hero min-h-screen lg:px-20">
-        <div class="hero-content flex-col justify-between lg:flex-row">
-          <div class="card lg:w-1/2 bg-base-100 shadow-xl text-slate-700">
-            <div class="card-body">
+      <div className="hero min-h-screen lg:px-20">
+        <div className="hero-content flex-col justify-between lg:flex-row">
+          <div className="card lg:w-1/2 bg-base-100 shadow-xl text-slate-700">
+            <div className="card-body">
               {/* <div className="text-center"> */}
               <img width={"80%"} src={products.image} alt="" />
               {/* </div> */}
-              <h2 class="card-title font-bold">{products.name}</h2>
+              <h2 className="card-title font-bold">{products.name}</h2>
               <p>{products.description}</p>
               <div className="mt-5">
                 <p className="font-bold">
@@ -103,18 +102,18 @@ const Order = () => {
                   <span className="text-primary">{products.price}</span>
                 </p>
               </div>
-              {/* <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
+              {/* <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
               </div> */}
             </div>
           </div>
 
           {/* continue to order form */}
-          <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <h2 className="text-slate-700 font-bold text-4xl text-center my-5">
               Fill up to order
             </h2>
-            <div class="card-body">
+            <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                   type="name"
@@ -195,46 +194,46 @@ const Order = () => {
               {/* react hook form */}
 
               {/* <form onSubmit={handleConfirmOrder}>
-                <div class="form-control my-2">
+                <div className="form-control my-2">
                   <input
                     type="name"
                     placeholder={user.displayName}
-                    class="input input-bordered"
+                    className="input input-bordered"
                     readOnly
                   />
                 </div>
-                <div class="form-control my-2">
+                <div className="form-control my-2">
                   <input
                     type="email"
                     placeholder={user.email}
-                    class="input input-bordered"
+                    className="input input-bordered"
                     readOnly
                   />
                 </div>
-                <div class="form-control my-2">
+                <div className="form-control my-2">
                   <input
                     type="text"
                     placeholder="Address"
-                    class="input input-bordered"
+                    className="input input-bordered"
                   />
                 </div>
-                <div class="form-control my-2">
+                <div className="form-control my-2">
                   <input
                     type="phone"
                     placeholder="Phone Number"
-                    class="input input-bordered"
+                    className="input input-bordered"
                   />
                 </div>
-                <div class="form-control my-2">
+                <div className="form-control my-2">
                   <input
                     type="number"
                     placeholder="Order Quantity"
-                    class="input input-bordered"
+                    className="input input-bordered"
                     ref={quantityRef}
                   />
                 </div>
-                <div class="form-control mt-6">
-                  <button class="btn btn-primary">Order</button>
+                <div className="form-control mt-6">
+                  <button className="btn btn-primary">Order</button>
                 </div>
               </form> */}
             </div>

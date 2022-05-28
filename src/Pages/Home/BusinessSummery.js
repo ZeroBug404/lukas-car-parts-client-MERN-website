@@ -7,14 +7,14 @@ const BusinessSummery = () => {
         Our Business Summery
       </h2>
 
-      <div class="stats shadow w-4/5 mx-auto text-slate-700 my-8 p-6">
-        <div class="stat">
-          <div class=" text-primary">
+      <div className="stats shadow w-4/5 mx-auto text-slate-700 my-8 p-6">
+        <div className="stat">
+          <div className=" text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="inline-block w-8 h-8 stroke-current"
+              className="inline-block w-8 h-8 stroke-current"
             >
               <path
                 stroke-linecap="round"
@@ -24,18 +24,18 @@ const BusinessSummery = () => {
               ></path>
             </svg>
           </div>
-          <div class="stat-title">Downloads</div>
-          <div class="stat-value">31K</div>
-          <div class="stat-desc">Jan 1st - Feb 1st</div>
+          <div className="stat-title">Served</div>
+          <div className="stat-value">1000+</div>
+          <div className="stat-desc">Jan 1st 2000 - Feb 1st 2022</div>
         </div>
 
-        <div class="stat">
-          <div class=" text-primary">
+        <div className="stat">
+          <div className=" text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="inline-block w-8 h-8 stroke-current"
+              className="inline-block w-8 h-8 stroke-current"
             >
               <path
                 stroke-linecap="round"
@@ -45,18 +45,18 @@ const BusinessSummery = () => {
               ></path>
             </svg>
           </div>
-          <div class="stat-title">New Users</div>
-          <div class="stat-value">4,200</div>
-          <div class="stat-desc">↗︎ 400 (22%)</div>
+          <div className="stat-title">Tools</div>
+          <div className="stat-value">50+</div>
+          <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
-        <div class="stat">
-          <div class="text-primary">
+        <div className="stat">
+          <div className="text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="inline-block w-8 h-8 stroke-current"
+              className="inline-block w-8 h-8 stroke-current"
             >
               <path
                 stroke-linecap="round"
@@ -66,9 +66,9 @@ const BusinessSummery = () => {
               ></path>
             </svg>
           </div>
-          <div class="stat-title">New Registers</div>
-          <div class="stat-value">1,200</div>
-          <div class="stat-desc">↘︎ 90 (14%)</div>
+          <div className="stat-title">Reviews</div>
+          <div className="stat-value">33+</div>
+          <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
     </div>

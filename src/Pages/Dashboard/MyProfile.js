@@ -28,7 +28,7 @@ const MyProfile = () => {
       address: data.address,
       phone: data.phone
     }
-    fetch(`http://localhost:5000/usersDetail/${user.email}`, {
+    fetch(`https://protected-plains-56245.herokuapp.com/usersDetail/${user.email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/usersDetail/${user.email}`)
+    fetch(`https://protected-plains-56245.herokuapp.com/usersDetail/${user.email}`)
     .then(res => res.json())
     .then(data => {
       console.log(data);
@@ -54,8 +54,8 @@ const MyProfile = () => {
 
   return (
     <div className="text-slate-900">
-      <div class=" ">
-        <div class="flex justify-between">
+      <div className=" ">
+        <div className="lg:flex lg:justify-between">
           <div className="flex flex-col justify-start">
             <p className="font-medium">Name:</p>
             <h2 className="text-2xl font-semibold mb-3">{user.displayName}</h2>
@@ -75,8 +75,8 @@ const MyProfile = () => {
               <h2 className="text-2xl font-semibold mb-3">{userInfo.phone}</h2>
           </div>
 
-          <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div class="card-body">
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body">
                 <h2 className="text-center text-slate-700 font-semibold text-xl">Complete or Update full profile</h2>
               <form className="" onSubmit={handleSubmit(onSubmit)}>
                 <input

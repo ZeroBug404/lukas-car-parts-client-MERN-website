@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useToken = (user) => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const email = user?.user?.email;
@@ -9,7 +9,7 @@ const useToken = (user) => {
     // console.log(currentUser);
 
     if (email) {
-      fetch(`http://localhost:5000/users/${email}`, {
+      fetch(`https://protected-plains-56245.herokuapp.com/users/${email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -18,11 +18,11 @@ const useToken = (user) => {
       })
         .then((response) => response.json())
         .then((data) => {
-        //   console.log("Success:", data);
+          //   console.log("Success:", data);
 
           const accessToken = data.token;
-          localStorage.setItem('accessToken', accessToken)
-          setToken(accessToken)
+          localStorage.setItem("accessToken", accessToken);
+          setToken(accessToken);
         });
     }
   }, [user]);

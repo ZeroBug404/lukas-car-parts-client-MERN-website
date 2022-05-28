@@ -4,16 +4,15 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 import DeleteOrderConfirm from "./DeleteOrderConfirm";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
-  const [deleteConfirm, setDeleteConfirm] = useState(null)
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     data: orders,
@@ -21,32 +20,32 @@ const MyOrders = () => {
     error,
     refetch,
   } = useQuery("myorders", () =>
-    fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
-        method: 'GET',
+    fetch(
+      `https://protected-plains-56245.herokuapp.com/myorders?userEmail=${user.email}`,
+      {
+        method: "GET",
         headers: {
-            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-    }).then(res => {
-        if (res.status === 401 || res.status === 403) {
-            signOut(auth);
-            localStorage.removeItem('accessToken');
-            navigate('/');
-        }
-        return res.json()
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+        navigate("/");
+      }
+      return res.json();
     })
   );
 
-  if(isLoading){
-      return <Loading></Loading>
+  if (isLoading) {
+    return <Loading></Loading>;
   }
-
-
-  
 
   return (
     <div>
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           {/* <!-- head --> */}
           <thead>
             <tr>
@@ -56,7 +55,7 @@ const MyOrders = () => {
               <th>Action</th>
             </tr>
           </thead>
-          
+
           <tbody>
             {orders?.map((order, index) => (
               <tr key={order._id} className="text-slate-800">
@@ -65,23 +64,26 @@ const MyOrders = () => {
                 <td>{order.productName}</td>
                 <td>{order.productQuantity}</td>
                 <td>
-                  <label onClick={() => setDeleteConfirm(order)} for="delete-modal" class="btn btn-error mr-2 btn-sm">
+                  <label
+                    onClick={() => setDeleteConfirm(order)}
+                    for="delete-modal"
+                    className="btn btn-error mr-2 btn-sm"
+                  >
                     delete
                   </label>
-                  <button class="btn btn-success btn-sm">pay</button>
+                  <button className="btn btn-success btn-sm">pay</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {
-              (deleteConfirm &&  <DeleteOrderConfirm
-              deleteConfirm={deleteConfirm}
-              setDeleteConfirm={setDeleteConfirm}
-                refetch={refetch}
-                ></DeleteOrderConfirm>)
-          }
-
+        {deleteConfirm && (
+          <DeleteOrderConfirm
+            deleteConfirm={deleteConfirm}
+            setDeleteConfirm={setDeleteConfirm}
+            refetch={refetch}
+          ></DeleteOrderConfirm>
+        )}
       </div>
     </div>
   );

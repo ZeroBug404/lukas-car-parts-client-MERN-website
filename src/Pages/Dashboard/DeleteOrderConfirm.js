@@ -1,13 +1,13 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const DeleteOrderConfirm = ({deleteConfirm, refetch}) => {
-   const {productName, _id} = deleteConfirm;
+const DeleteOrderConfirm = ({ deleteConfirm, refetch }) => {
+  const { productName, _id } = deleteConfirm;
 
   //  console.log(order);
 
-   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/myorders/${id}`, {
+  const handleDelete = (id) => {
+    fetch(`https://protected-plains-56245.herokuapp.com/myorders/${id}`, {
       method: "DELETE",
       // headers: {
       //     'Content-type': 'application/json'
@@ -23,19 +23,25 @@ const DeleteOrderConfirm = ({deleteConfirm, refetch}) => {
   return (
     <div className="text-slate-900">
       {/* <!-- The button to open modal --> */}
-      
 
       {/* <!-- Put this part before </body> tag --> */}
-      <input type="checkbox" id="delete-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-        <label for="delete-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <h3 class="font-bold text-lg text-warning">
-            {productName}
-          </h3>
+      <input type="checkbox" id="delete-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <label
+            for="delete-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="font-bold text-lg text-warning">{productName}</h3>
           <p>Are you sure want to delete?</p>
-          <div class="modal-action ">
-            <label className="btn text-slate-700" onClick={() => handleDelete(_id)} for="delete-modal">
+          <div className="modal-action ">
+            <label
+              className="btn text-slate-700"
+              onClick={() => handleDelete(_id)}
+              for="delete-modal"
+            >
               Delete
             </label>
           </div>

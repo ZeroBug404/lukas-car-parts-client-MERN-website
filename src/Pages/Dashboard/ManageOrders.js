@@ -4,7 +4,7 @@ const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
+    fetch(`https://protected-plains-56245.herokuapp.com/orders`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -14,8 +14,8 @@ const ManageOrders = () => {
     <div>
       <h2 className="text-3xl text-slate-600 font-semibold">All Orders</h2>
 
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           {/* <!-- head --> */}
           <thead>
             <tr>
@@ -36,7 +36,7 @@ const ManageOrders = () => {
                 <td>{order.userEmail}</td>
                 <td>{order.productQuantity}</td>
                 <td>
-                  <label class="btn btn-error mr-2 btn-sm">delete</label>
+                  <label className="btn btn-error mr-2 btn-sm">delete</label>
                 </td>
               </tr>
             ))}
