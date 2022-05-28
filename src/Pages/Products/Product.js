@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { _id, name, image, description, minimunOrderQuantity, availableQuantity, price } = product;
+  const { _id, name, imageUrl, description, minimunOrderQuantity, availableQuantity, price } = product;
 
   const navigate = useNavigate()
 
@@ -13,7 +13,7 @@ const Product = ({ product }) => {
     <div class="card card-compact bg-base-100 shadow-xl text-slate-900">
       <figure>
         <img
-          src={image}
+          src={imageUrl}
           alt=""
         />
       </figure>
