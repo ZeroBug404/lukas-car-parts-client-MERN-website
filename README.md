@@ -1,6 +1,6 @@
 # Lukar Car Parts
 
-## Live site [Bicycle Inventory](https://lukas-carparts.web.app/).
+## Live site [Lukar Car Parts](https://lukas-carparts.web.app/).
 ## [https://lukas-carparts.web.app/](https://lukas-carparts.web.app/).
 
 ## Description
@@ -14,6 +14,8 @@ This is a site for them who want parts for cars. They will find difference accse
 - Used NodeJS as server-side
 - Used ExpressJS as NodeJS
 - Used Mongodb as database
+- Tailwind css 
+- Daisy Ui Tailwind React 
 
 ## Features
 

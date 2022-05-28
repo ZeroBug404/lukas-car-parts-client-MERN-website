@@ -78,7 +78,10 @@ const Header = () => {
             <Link to={"/Home"}>Home</Link>
           </li>
           <li tabindex="0">
-            <Link to={"myportfolio"}>My Portfolio</Link>
+            <Link to={"/myportfolio"}>My Portfolio</Link>
+          </li>
+          <li tabindex="0">
+            <Link to={"/blog"}>Blog</Link>
           </li>
 
           {user ? (
