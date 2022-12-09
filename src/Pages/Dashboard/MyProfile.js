@@ -6,8 +6,7 @@ import auth from "../../firebase.init";
 
 const MyProfile = () => {
   const [user] = useAuthState(auth);
-  const [userInfo, setUserInfo] = useState({})
-
+  const [userInfo, setUserInfo] = useState({});
 
   // console.log(userInfo);
 
@@ -26,31 +25,34 @@ const MyProfile = () => {
     const userDetail = {
       education: data.education,
       address: data.address,
-      phone: data.phone
-    }
-    fetch(`https://protected-plains-56245.herokuapp.com/usersDetail/${user.email}`, {
+      phone: data.phone,
+    };
+    fetch(
+      `https://lukas-car-parts-api.onrender.com/usersDetail/${user.email}`,
+      {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userDetail),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          toast.success('Your profile is updated')
-          // setUserInfo(data)
-        });
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Your profile is updated");
+        // setUserInfo(data)
+      });
   };
 
   useEffect(() => {
-    fetch(`https://protected-plains-56245.herokuapp.com/usersDetail/${user.email}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      setUserInfo(data)
-    })
-  },[user])
+    fetch(`https://lukas-car-parts-api.onrender.com/usersDetail/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUserInfo(data);
+      });
+  }, [user]);
 
   return (
     <div className="text-slate-900">
@@ -67,17 +69,21 @@ const MyProfile = () => {
               <h2 className="text-2xl font-semibold">{info.address}</h2>
               </>)
             } */}
-              <p className="font-medium">Address:</p>
-              <h2 className="text-2xl font-semibold mb-3">{userInfo.address}</h2>
-              <p className="font-medium">Education:</p>
-              <h2 className="text-2xl font-semibold mb-3">{userInfo.education}</h2>
-              <p className="font-medium">Phone:</p>
-              <h2 className="text-2xl font-semibold mb-3">{userInfo.phone}</h2>
+            <p className="font-medium">Address:</p>
+            <h2 className="text-2xl font-semibold mb-3">{userInfo.address}</h2>
+            <p className="font-medium">Education:</p>
+            <h2 className="text-2xl font-semibold mb-3">
+              {userInfo.education}
+            </h2>
+            <p className="font-medium">Phone:</p>
+            <h2 className="text-2xl font-semibold mb-3">{userInfo.phone}</h2>
           </div>
 
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
-                <h2 className="text-center text-slate-700 font-semibold text-xl">Complete or Update full profile</h2>
+              <h2 className="text-center text-slate-700 font-semibold text-xl">
+                Complete or Update full profile
+              </h2>
               <form className="" onSubmit={handleSubmit(onSubmit)}>
                 <input
                   type="education"

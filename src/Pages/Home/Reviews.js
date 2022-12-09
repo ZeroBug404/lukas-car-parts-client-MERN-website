@@ -4,7 +4,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`https://protected-plains-56245.herokuapp.com/review`)
+    fetch(`https://lukas-car-parts-api.onrender.com/review`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

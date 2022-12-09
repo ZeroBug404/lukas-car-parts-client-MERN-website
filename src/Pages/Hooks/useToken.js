@@ -9,7 +9,7 @@ const useToken = (user) => {
     // console.log(currentUser);
 
     if (email) {
-      fetch(`https://protected-plains-56245.herokuapp.com/users/${email}`, {
+      fetch(`https://lukas-car-parts-api.onrender.com/users/${email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

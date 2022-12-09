@@ -21,7 +21,7 @@ const MyOrders = () => {
     refetch,
   } = useQuery("myorders", () =>
     fetch(
-      `https://protected-plains-56245.herokuapp.com/myorders?userEmail=${user.email}`,
+      `https://lukas-car-parts-api.onrender.com/myorders?userEmail=${user.email}`,
       {
         method: "GET",
         headers: {

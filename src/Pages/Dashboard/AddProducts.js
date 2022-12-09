@@ -20,7 +20,7 @@ const AddProducts = () => {
       description: textRef.current.value,
     };
 
-    fetch(`https://protected-plains-56245.herokuapp.com/products`, {
+    fetch(`https://lukas-car-parts-api.onrender.com/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

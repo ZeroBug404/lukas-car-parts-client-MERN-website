@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const DeleteProductConfirm = ({ deleteConfirm, setDeleteConfirm }) => {
   const { _id, name } = deleteConfirm;
   const handleDelete = () => {
-    fetch(`https://protected-plains-56245.herokuapp.com/products/${_id}`, {
+    fetch(`https://lukas-car-parts-api.onrender.com/products/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",

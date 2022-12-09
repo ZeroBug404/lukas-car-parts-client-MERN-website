@@ -6,7 +6,7 @@ const ManageProducts = () => {
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   useEffect(() => {
-    fetch(`https://protected-plains-56245.herokuapp.com/products`)
+    fetch(`https://lukas-car-parts-api.onrender.com/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [products]);

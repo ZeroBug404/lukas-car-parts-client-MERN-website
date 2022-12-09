@@ -7,7 +7,7 @@ const DeleteOrderConfirm = ({ deleteConfirm, refetch }) => {
   //  console.log(order);
 
   const handleDelete = (id) => {
-    fetch(`https://protected-plains-56245.herokuapp.com/myorders/${id}`, {
+    fetch(`https://lukas-car-parts-api.onrender.com/myorders/${id}`, {
       method: "DELETE",
       // headers: {
       //     'Content-type': 'application/json'

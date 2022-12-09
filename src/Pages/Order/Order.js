@@ -13,7 +13,7 @@ const Order = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`https://protected-plains-56245.herokuapp.com/products/${id}`)
+    fetch(`https://lukas-car-parts-api.onrender.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [id]);
@@ -50,7 +50,7 @@ const Order = () => {
       return setQuantityError(true);
     } else {
       // console.log(oreder);
-      fetch("https://protected-plains-56245.herokuapp.com/orders", {
+      fetch("https://lukas-car-parts-api.onrender.com/orders", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

@@ -10,7 +10,7 @@ const AllUsers = () => {
 
   // console.log(user);
   useEffect(() => {
-    fetch(`https://protected-plains-56245.herokuapp.com/users`, {
+    fetch(`https://lukas-car-parts-api.onrender.com/users`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -23,7 +23,7 @@ const AllUsers = () => {
   }, [users]);
 
   const makeAdmin = (email) => {
-    fetch(`https://protected-plains-56245.herokuapp.com/users/admin/${email}`, {
+    fetch(`https://lukas-car-parts-api.onrender.com/users/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

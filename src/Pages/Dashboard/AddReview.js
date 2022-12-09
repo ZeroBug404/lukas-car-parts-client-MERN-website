@@ -23,7 +23,7 @@ const AddReview = () => {
       name: user.displayName,
     };
 
-    fetch(`https://protected-plains-56245.herokuapp.com/review`, {
+    fetch(`https://lukas-car-parts-api.onrender.com/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

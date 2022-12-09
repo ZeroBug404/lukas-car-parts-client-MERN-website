@@ -4,7 +4,7 @@ const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`https://protected-plains-56245.herokuapp.com/orders`)
+    fetch(`https://lukas-car-parts-api.onrender.com/orders`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
